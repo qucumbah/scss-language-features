@@ -7,7 +7,7 @@ import { ICSSDataProvider, newCSSDataProvider } from 'vscode-css-languageservice
 import { RequestService } from './requests';
 
 export function fetchDataProviders(dataPaths: string[], requestService: RequestService): Promise<ICSSDataProvider[]> {
-	const providers = dataPaths.map(async p => {
+	const providers = dataPaths.map(async (p) => {
 		try {
 			const content = await requestService.getContent(p);
 			return parseCSSData(content);
@@ -33,6 +33,6 @@ function parseCSSData(source: string): ICSSDataProvider {
 		properties: rawData.properties || [],
 		atDirectives: rawData.atDirectives || [],
 		pseudoClasses: rawData.pseudoClasses || [],
-		pseudoElements: rawData.pseudoElements || []
+		pseudoElements: rawData.pseudoElements || [],
 	});
 }
