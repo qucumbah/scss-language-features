@@ -3,7 +3,7 @@
   "displayName": "%displayName%",
   "description": "%description%",
   "version": "1.0.0",
-  "publisher": "vscode",
+  "publisher": "danshmelev",
   "license": "MIT",
   "engines": {
     "vscode": "^1.77.0"
@@ -16,19 +16,16 @@
     "onCommand:_css.applyCodeAction"
   ],
   "main": "./client/out/node/cssClientMain",
-  "browser": "./client/dist/browser/cssClientMain",
+  "browser": "./client/out/browser/cssClientMain",
   "capabilities": {
     "virtualWorkspaces": true,
     "untrustedWorkspaces": {
       "supported": true
     }
   },
-  "enabledApiProposals": [
-    "documentPaste"
-  ],
   "scripts": {
-    "compile": "npx gulp compile-extension:css-language-features-client compile-extension:css-language-features-server",
-    "watch": "npx gulp watch-extension:css-language-features-client watch-extension:css-language-features-server",
+    "compile": "gulp compile-extension:client compile-extension:server",
+    "watch": "gulp watch-extension:client watch-extension:server",
     "test": "node ../../node_modules/mocha/bin/mocha",
     "install-client-next": "npm install vscode-languageclient@next"
   },
@@ -997,11 +994,16 @@
     ]
   },
   "dependencies": {
+    "color": "^4.2.3",
+    "color-name": "1.1.4",
     "vscode-languageclient": "^10.0.0-next.13",
     "vscode-uri": "^3.0.8"
   },
   "devDependencies": {
-    "@types/node": "20.x"
+    "@types/color": "^4.2.0",
+    "@types/color-name": "1.1.1",
+    "@types/node": "20.x",
+    "gulp": "^4.0.0"
   },
   "repository": {
     "type": "git",

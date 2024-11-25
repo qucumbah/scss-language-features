@@ -48,7 +48,7 @@ export function findHex(text: string): string[] {
 		const matchedColor = match[1];
 
 		try {
-			const color = Color(matchedColor).hex();
+			const color = Color.default(matchedColor).hex();
 
 			result.push(color);
 		} catch (e) {
@@ -98,7 +98,7 @@ export function findWords(text: string): string[] {
 		}
 
 		try {
-			const color = Color(matchedColor).rgb().string();
+			const color = Color.default(matchedColor).rgb().string();
 
 			result.push(color);
 		} catch (e) {

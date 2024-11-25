@@ -494,7 +494,6 @@ export function startServer(connection: Connection, runtime: RuntimeEnvironment)
 		return runSafeAsync(
 			runtime,
 			async () => {
-				const start = performance.now();
 				const scssLinks = await tryGetScssLinks(documentLinkParams);
 				if (scssLinks && scssLinks.length) {
 					return scssLinks;

@@ -6,7 +6,6 @@
 
 import { CompletionList, CompletionItemKind, CompletionItem } from 'vscode-languageserver';
 import type { TextDocument } from 'vscode-languageserver-textdocument';
-import { URI } from 'vscode-uri';
 import * as path from 'path';
 
 import type { IMixin, IDocumentSymbols, ITsConfig } from '../types/symbols';

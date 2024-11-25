@@ -42,7 +42,10 @@ export async function links(document: TextDocument, storage: StorageService): Pr
 async function findLinkNodes(textDocument: IDocument): Promise<INode[]> {
 	const result: INode[] = [];
 	for (const node of textDocument.ast.getChildren()) {
-		if (node.type === NodeType.Use && node.getChild(0).type === NodeType.StringLiteral) {
+		if (
+			(node.type === NodeType.Use || node.type === NodeType.Import)
+			&& node.getChild(0).type === NodeType.StringLiteral
+		) {
 			result.push(node.getChild(0));
 		}
 	}

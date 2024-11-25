@@ -22,7 +22,6 @@ import {
 	FormattingOptions,
 	workspace,
 	l10n,
-	RelativePattern,
 } from 'vscode';
 import {
 	Disposable,
@@ -80,18 +79,7 @@ export async function startClient(
 	newLanguageClient: LanguageClientConstructor,
 	runtime: Runtime
 ): Promise<BaseLanguageClient> {
-	// Hot reloading REMOVE AFTER
-	const watcher = workspace.createFileSystemWatcher(
-		new RelativePattern('/Users/danshmelev/Code/vscode/extensions/css-language-features', '**/*.ts')
-	);
-	watcher.onDidChange(({ scheme, path }) => {
-		console.info(`${scheme} ${path} changed. Reloading VSCode...`);
-		commands.executeCommand('workbench.action.reloadWindow').then(
-			() => {},
-			() => {}
-		);
-	});
-
+	console.log('starting');
 	const customDataSource = getCustomDataSource(context.subscriptions);
 
 	const documentSelector = ['css', 'scss', 'less'];
@@ -158,10 +146,12 @@ export async function startClient(
 	};
 
 	// Create the language client and start the client.
-	const client = newLanguageClient('css', l10n.t('CSS Language Server'), clientOptions);
+	const client = newLanguageClient('css', l10n.t('SCSS Language Server'), clientOptions);
 	client.registerProposedFeatures();
 
+	console.log('before client start');
 	await client.start();
+	console.log('after client start');
 
 	client.sendNotification(CustomDataChangedNotification.type, customDataSource.uris);
 	customDataSource.onDidChange(() => {
